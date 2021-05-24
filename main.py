@@ -16,7 +16,7 @@ def accept_or_not(pkt):
     if numpy.random.choice(choices, p=probs):
         pkt.accept()
     else:
-        print("Packet dropped.")
+        # print("Packet dropped.")
         pkt.drop()
 
 
