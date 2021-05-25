@@ -23,7 +23,7 @@ def accept_or_not(pkt):
 def readParameters():
     if len(sys.argv) >= 2:
         if len(sys.argv) == 2:
-            return sys.argv[1], -1
+            return float(sys.argv[1]), -1
         return float(sys.argv[1]), float(sys.argv[2])
     else:
         print("usage:\n main.py packetloss [jitter]\n  *packetloss in %\n  *jitter in ms")
