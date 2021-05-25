@@ -1,4 +1,7 @@
 # LinkConditioner
+
+Allow developers to introduce packet loss in linux network.
+
 #Dependencies (ref:https://pypi.org/project/NetfilterQueue/)
 1. apt-get install build-essential python-dev libnetfilter-queue-dev
 2. netfilterqueue:
