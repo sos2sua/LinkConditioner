@@ -4,19 +4,26 @@ import numpy
 import socket
 from netfilterqueue import NetfilterQueue
 
-ROUTE_TRAFFIC = "iptables -A INPUT -j NFQUEUE --queue-num 0"
-ROUTE_TRAFFIC_DEL = "iptables -D INPUT -j NFQUEUE --queue-num 0"
+ROUTE_TRAFFIC = "iptables -A INPUT -j NFQUEUE --queue-num 1"
+ROUTE_TRAFFIC_DEL = "iptables -D INPUT -j NFQUEUE --queue-num 1"
 choices = [True, False]
 probs = [1, 0]
 
+dropCount = 0
+
 
 def accept_or_not(pkt):
-    global choices, probs
+    global choices, probs, dropCount
 
     if numpy.random.choice(choices, p=probs):
         pkt.accept()
     else:
-        # print("Packet dropped.")
+        dropCount += 1
+        if dropCount == 200:
+            print("")
+            dropCount = 0
+        if dropCount%2 == 0:
+            print "d",
         pkt.drop()
 
 
@@ -49,8 +56,12 @@ res = numpy.random.choice(choices, p=probs)
 
 print("Starting LinkConditioner")
 nfqueue = NetfilterQueue()
-nfqueue.bind(0, accept_or_not)
+nfqueue.bind(1, accept_or_not)
 s = socket.fromfd(nfqueue.get_fd(), socket.AF_UNIX, socket.SOCK_STREAM)
+
+# Delete all old routes that may exist
+while runCMD(ROUTE_TRAFFIC_DEL):
+    pass
 try:
     print("Routing Traffic through the LinkConditioner.")
     runCMD(ROUTE_TRAFFIC)
