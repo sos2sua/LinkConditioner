@@ -1,4 +1,5 @@
-# LinkConditioner
+# LinkConditioner 
+# Note only works with python 2.7 - 3.6 !
 
 Allow developers to introduce packet loss in linux network.
 
