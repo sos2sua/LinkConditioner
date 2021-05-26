@@ -25,7 +25,7 @@ def accept_or_not(pkt):
             print("")
             dropCount = 0
         if dropCount % 2 == 0:
-            print "d",
+            print("d")
         pkt.drop()
 
 
