@@ -4,7 +4,7 @@ import numpy
 import socket
 from netfilterqueue import NetfilterQueue
 
-ROUTE_TRAFFIC = "iptables -A OUTPUT -j NFQUEUE --queue-num 1;iptables -A INPUT -j NFQUEUE --queue-num 1"
+ROUTE_TRAFFIC = "iptables -I OUTPUT -j NFQUEUE --queue-num 1;iptables -I INPUT -j NFQUEUE --queue-num 1"
 ROUTE_TRAFFIC_IN_DEL = "iptables -D INPUT -j NFQUEUE --queue-num 1"
 ROUTE_TRAFFIC_OUT_DEL = "iptables -D OUTPUT -j NFQUEUE --queue-num 1"
 USAGE = "usage:\n main.py packetloss [jitter]\n  *packetloss in %\n  *jitter in ms"
@@ -80,6 +80,7 @@ except KeyboardInterrupt:
     print('')
 
 print("Traffic Route Deleted.")
+
 runCMD(ROUTE_TRAFFIC_IN_DEL)
 runCMD(ROUTE_TRAFFIC_OUT_DEL)
 s.close()
