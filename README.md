@@ -11,3 +11,9 @@ Allow developers to introduce packet loss in linux network.
    pip install -U git+https://github.com/kti/python-netfilterqueue
    (https://stackoverflow.com/questions/61301351/how-do-i-install-netfilterqueue-for-python3)
 
+If installing for Python3 not set as default
+1. pip3 install numpy
+2. sudo apt-get install build-essential python-dev libnetfilter-queue-dev
+3. pip3 install NetfilterQueue
+
+4. sudo python3 main.py 0.1
