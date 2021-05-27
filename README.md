@@ -1,7 +1,7 @@
 # LinkConditioner 
 # Note only works with python 2.7 - 3.6 !
 
-Allow developers to introduce packet loss in linux network.
+Allow developers to introduce packet loss in linux network based on the NFQUEUE.
 
 
 "To understand NFQUEUE, the easiest way is to understand the architecture inside Linux kernel. When a packet reach an NFQUEUE target it is en-queued to the queue corresponding to the number given by the --queue-num option. The packet queue is a implemented as a chained list with element being the packet and metadata (a Linux kernel skb):
